@@ -14,27 +14,8 @@ namespace Vox2Cub
                 @"\Vox2Cub Converted Files\";
 
             StageOutputDirectory(outputPath);
+            ExportDirectory(inputDirectory, outputPath);
 
-            // find out how to refactor all of this
-            var inputFiles = inputDirectory.GetFiles();
-            int progress = 1;
-            int fileCount = inputFiles.Length;
-
-            foreach (var file in inputFiles)
-            {
-                var importedData = VoxelImport.Import(file.FullName);
-                var fileName = Path.GetFileNameWithoutExtension(file.FullName);
-                string outputFilePath = outputPath + fileName + ".cub";
-                Console.WriteLine(progress + "/" + fileCount
-                    + " - " + fileName);
-
-                // Voxels library only works with .vox and .qb files.
-                // .vox functionality removed temporarily due to issues with format
-                if (file.Extension == ".qb")
-                    CubExport.Export(importedData, outputFilePath);
-                progress++;
-            }
-            // find out how to refactor all of this
             Console.WriteLine("Success! All converted files are in \""
                 + outputPath + "\"");
             Console.ReadLine();
@@ -83,6 +64,29 @@ namespace Vox2Cub
             }
 
             return inputPath;
+        }
+
+        static void ExportDirectory(DirectoryInfo inputDirectory,
+            string outputPath)
+        {
+            var inputFiles = inputDirectory.GetFiles();
+            int fileCount = inputFiles.Length;
+            int progress = 1;
+
+            foreach (var file in inputFiles)
+            {
+                var importedData = VoxelImport.Import(file.FullName);
+                var fileName = Path.GetFileNameWithoutExtension(file.FullName);
+                string outputFilePath = outputPath + fileName + ".cub";
+                Console.WriteLine(progress + "/" + fileCount
+                    + " - " + fileName);
+
+                // Voxels library only works with .vox and .qb files.
+                // .vox functionality removed temporarily due to issues with format
+                if (file.Extension == ".qb")
+                    CubExport.Export(importedData, outputFilePath);
+                progress++;
+            }
         }
 
         static void StageOutputDirectory(string outputDir)
