@@ -93,7 +93,7 @@ namespace Vox2Cub
                     + " - " + fileName);
 
                 // Voxels library only works with .vox and .qb files.
-                // .vox functionality removed temporarily due to issues with format
+                // .vox functionality removed temporarily
                 if (file.Extension == ".qb")
                     CubExport.Export(importedData, outputFilePath);
                 progress++;
