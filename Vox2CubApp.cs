@@ -9,12 +9,11 @@ namespace Vox2Cub
         static void Main(string[] args)
         {
             string inputPath = GetInputDirectory();
-            DirectoryInfo inputDirectory = new DirectoryInfo(inputPath);
             string outputPath = Environment.CurrentDirectory +
                 @"\Vox2Cub Converted Files\";
 
             StageOutputDirectory(outputPath);
-            ExportDirectory(inputDirectory, outputPath);
+            ConvertDirectory(inputPath, outputPath);
 
             Console.WriteLine("Success! All converted files are in \""
                 + outputPath + "\"");
@@ -66,10 +65,9 @@ namespace Vox2Cub
             return inputPath;
         }
 
-        static void ExportDirectory(DirectoryInfo inputDirectory,
-            string outputPath)
+        static void ConvertDirectory(string inputPath, string outputPath)
         {
-            var inputFiles = inputDirectory.GetFiles();
+            var inputFiles = new DirectoryInfo(inputPath).GetFiles();
             int fileCount = inputFiles.Length;
             int progress = 1;
 
