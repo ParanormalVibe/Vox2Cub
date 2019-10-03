@@ -65,6 +65,19 @@ namespace Vox2Cub
             return inputPath;
         }
 
+        static void VerifyDirectoryPath(string path)
+        {
+            Path.GetFullPath(path);
+            if (!Directory.Exists(path))
+                throw new DirectoryNotFoundException();
+        }
+
+        static void StageOutputDirectory(string outputDir)
+        {
+            if (!Directory.Exists(outputDir))
+                Directory.CreateDirectory(outputDir);
+        }
+
         static void ConvertDirectory(string inputPath, string outputPath)
         {
             var inputFiles = new DirectoryInfo(inputPath).GetFiles();
@@ -85,19 +98,6 @@ namespace Vox2Cub
                     CubExport.Export(importedData, outputFilePath);
                 progress++;
             }
-        }
-
-        static void StageOutputDirectory(string outputDir)
-        {
-            if (!Directory.Exists(outputDir))
-                Directory.CreateDirectory(outputDir);
-        }
-
-        static void VerifyDirectoryPath(string path)
-        {
-            Path.GetFullPath(path);
-            if (!Directory.Exists(path))
-                throw new DirectoryNotFoundException();
         }
     }
 }
