@@ -11,7 +11,7 @@ namespace Vox2Cub
             string inputDirPath = GetInputDirectory();
             DirectoryInfo inputDirectory = new DirectoryInfo(inputDirPath);
             string outputDir = Environment.CurrentDirectory +
-                @"\converted files\";
+                @"\Vox2Cub Converted Files\";
 
             StageOutputDirectory(outputDir);
 
