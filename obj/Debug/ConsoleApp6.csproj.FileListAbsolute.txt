@@ -1,0 +1,9 @@
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\ConsoleApp6.csprojAssemblyReference.cache
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\ConsoleApp6.csproj.CoreCompileInputs.cache
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\bin\Debug\Voxels.dll
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\ConsoleApp6.csproj.CopyComplete
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\bin\Debug\Vox2Cub.exe.config
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\bin\Debug\Vox2Cub.exe
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\bin\Debug\Vox2Cub.pdb
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\Vox2Cub.exe
+C:\Users\Fenneru\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\Vox2Cub.pdb
