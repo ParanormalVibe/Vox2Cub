@@ -88,8 +88,6 @@ namespace Vox2Cub
         {
             if (!Directory.Exists(outputDir))
                 Directory.CreateDirectory(outputDir);
-            foreach (FileInfo file in new DirectoryInfo(outputDir).GetFiles())
-                file.Delete();
         }
 
         static void CreateCubFile(VoxelData origData, string outputPath)
