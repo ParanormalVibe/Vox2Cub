@@ -28,7 +28,8 @@ namespace Vox2Cub
                     + " - " + origFileName);
 
                 // Voxels library only works with .vox and .qb files.
-                if (file.Extension == ".vox" || file.Extension == ".qb")
+                // .vox functionality removed temporarily due to issues with format
+                if (file.Extension == ".qb")
                     CreateCubFile(importedData, outputFilePath);
                 progress++;
             }
