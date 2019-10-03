@@ -30,7 +30,7 @@ namespace Vox2Cub
                 // Voxels library only works with .vox and .qb files.
                 // .vox functionality removed temporarily due to issues with format
                 if (file.Extension == ".qb")
-                    CreateCubFile(importedData, outputFilePath);
+                    CubExport.Export(importedData, outputFilePath);
                 progress++;
             }
 
@@ -88,34 +88,6 @@ namespace Vox2Cub
         {
             if (!Directory.Exists(outputDir))
                 Directory.CreateDirectory(outputDir);
-        }
-
-        static void CreateCubFile(VoxelData origData, string outputPath)
-        {
-            using (BinaryWriter writeBinary = new BinaryWriter(File.Open
-                (outputPath, FileMode.Create)))
-            {
-                writeBinary.Write(origData.size.X);
-                writeBinary.Write(origData.size.Y);
-                writeBinary.Write(origData.size.Z);
-
-                for (int z = 0; z < origData.size.Z; z++)
-                    for (int y = 0; y < origData.size.Y; y++)
-                        for (int x = 0; x < origData.size.X; x++)
-                        {
-                            var currentPos = new XYZ(x, y, z);
-                            if (origData.IsValid(currentPos))
-                            {
-                                var voxelColor = origData[currentPos].Color;
-                                writeBinary.Write(voxelColor.R);
-                                writeBinary.Write(voxelColor.G);
-                                writeBinary.Write(voxelColor.B);
-                            }
-                            else
-                                writeBinary.Write(000);
-                        }
-                writeBinary.Close();
-            }
         }
 
         static void VerifyDirectoryPath(string path)
