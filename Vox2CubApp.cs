@@ -8,13 +8,14 @@ namespace Vox2Cub
     {
         static void Main(string[] args)
         {
-            string inputDirPath = GetInputDirectory();
-            DirectoryInfo inputDirectory = new DirectoryInfo(inputDirPath);
-            string outputDir = Environment.CurrentDirectory +
+            string inputPath = GetInputDirectory();
+            DirectoryInfo inputDirectory = new DirectoryInfo(inputPath);
+            string outputPath = Environment.CurrentDirectory +
                 @"\Vox2Cub Converted Files\";
 
-            StageOutputDirectory(outputDir);
+            StageOutputDirectory(outputPath);
 
+            // find out how to refactor all of this
             var inputFiles = inputDirectory.GetFiles();
             int progress = 1;
             int fileCount = inputFiles.Length;
@@ -22,10 +23,10 @@ namespace Vox2Cub
             foreach (var file in inputFiles)
             {
                 var importedData = VoxelImport.Import(file.FullName);
-                var origFileName = Path.GetFileNameWithoutExtension(file.FullName);
-                string outputFilePath = outputDir + origFileName + ".cub";
+                var fileName = Path.GetFileNameWithoutExtension(file.FullName);
+                string outputFilePath = outputPath + fileName + ".cub";
                 Console.WriteLine(progress + "/" + fileCount
-                    + " - " + origFileName);
+                    + " - " + fileName);
 
                 // Voxels library only works with .vox and .qb files.
                 // .vox functionality removed temporarily due to issues with format
@@ -33,55 +34,55 @@ namespace Vox2Cub
                     CubExport.Export(importedData, outputFilePath);
                 progress++;
             }
-
+            // find out how to refactor all of this
             Console.WriteLine("Success! All converted files are in \""
-                + outputDir + "\"");
+                + outputPath + "\"");
             Console.ReadLine();
         }
 
         static string GetInputDirectory()
         {
             Console.Write("vox/cb file folder: ");
-            string targetDir = Console.ReadLine();
+            string inputPath = Console.ReadLine();
             try
             {
-                VerifyDirectoryPath(targetDir);
+                VerifyDirectoryPath(inputPath);
             }
             catch (ArgumentException)
             {
-                Console.WriteLine("The path \"" + targetDir + "\" " +
+                Console.WriteLine("The path \"" + inputPath + "\" " +
                     "is invalid. Please enter a valid folder path.");
-                targetDir = GetInputDirectory();
+                inputPath = GetInputDirectory();
             }
             catch (System.Security.SecurityException)
             {
                 Console.WriteLine("Insufficient permissions to access \"" 
-                    + targetDir + "\".");
+                    + inputPath + "\".");
                 Console.WriteLine("Select another folder or run this " +
                     "application as an administrator and try again.");
-                targetDir = GetInputDirectory();
+                inputPath = GetInputDirectory();
             }
             catch (NotSupportedException)
             {
-                Console.WriteLine("The path \"" + targetDir + "\" " +
+                Console.WriteLine("The path \"" + inputPath + "\" " +
                     "contains a colon ':' outside of the volume identifier." +
                     " Please try again.");
-                targetDir = GetInputDirectory();
+                inputPath = GetInputDirectory();
             }
             catch (PathTooLongException)
             {
-                Console.WriteLine("The path \" " + targetDir + "\" " +
+                Console.WriteLine("The path \" " + inputPath + "\" " +
                     "is too long. Please enter a valid folder path.");
-                targetDir = GetInputDirectory();
+                inputPath = GetInputDirectory();
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("The path \" " + targetDir + "\" " +
+                Console.WriteLine("The path \" " + inputPath + "\" " +
                     "could not be found. Please enter a valid folder path.");
-                targetDir = GetInputDirectory();
+                inputPath = GetInputDirectory();
             }
 
-            return targetDir;
+            return inputPath;
         }
 
         static void StageOutputDirectory(string outputDir)
