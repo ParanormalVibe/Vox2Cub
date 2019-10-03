@@ -100,9 +100,9 @@ namespace Vox2Cub
                 writeBinary.Write(origData.size.Y);
                 writeBinary.Write(origData.size.Z);
 
-                for (int x = 0; x < origData.size.X; x++)
+                for (int z = 0; z < origData.size.Z; z++)
                     for (int y = 0; y < origData.size.Y; y++)
-                        for (int z = 0; z < origData.size.Z; z++)
+                        for (int x = 0; x < origData.size.X; x++)
                         {
                             var currentPos = new XYZ(x, y, z);
                             if (origData.IsValid(currentPos))
