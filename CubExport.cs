@@ -3,7 +3,7 @@ using Voxels;
 
 namespace Vox2Cub
 {
-    class CubExport
+    public class CubExport
     {
         public static void Export(VoxelData data, string path)
         {
