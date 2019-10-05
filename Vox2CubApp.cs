@@ -9,8 +9,8 @@ namespace Vox2Cub
         static void Main(string[] args)
         {
             string inputPath = GetInputDirectory();
-            string outputPath = Environment.CurrentDirectory +
-                @"\Vox2Cub Converted Files\";
+            string outputPath = Path.Combine(Environment.CurrentDirectory,
+                "\\Vox2Cub Converted Files\\");
 
             StageOutputDirectory(outputPath);
             ConvertDirectory(inputPath, outputPath);
@@ -88,7 +88,7 @@ namespace Vox2Cub
             {
                 var importedData = VoxelImport.Import(file.FullName);
                 var fileName = Path.GetFileNameWithoutExtension(file.FullName);
-                string outputFilePath = outputPath + fileName + ".cub";
+                string outputFilePath = Path.Combine(outputPath, fileName, ".cub");
                 Console.WriteLine(progress + "/" + fileCount
                     + " - " + fileName);
 
