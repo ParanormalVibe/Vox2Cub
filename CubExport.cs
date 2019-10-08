@@ -28,7 +28,7 @@ namespace Vox2Cub
                             var currentPos = new XYZ(x, y, z);
                             if (data.IsValid(currentPos))
                             {
-                                var voxelColor = data[currentPos].Color;
+                                var voxelColor = data.ColorOf(currentPos);
                                 writeBinary.Write(voxelColor.R);
                                 writeBinary.Write(voxelColor.G);
                                 writeBinary.Write(voxelColor.B);

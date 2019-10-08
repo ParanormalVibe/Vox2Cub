@@ -9,8 +9,8 @@ namespace Vox2Cub
         static void Main(string[] args)
         {
             string inputPath = GetInputDirectory();
-            string outputPath = Path.Combine(Environment.CurrentDirectory,
-                "\\Vox2Cub Converted Files\\");
+            string outputPath = Environment.CurrentDirectory +
+                "\\Vox2Cub Converted Files\\";
 
             StageOutputDirectory(outputPath);
             ConvertDirectory(inputPath, outputPath);
@@ -92,9 +92,7 @@ namespace Vox2Cub
                 Console.WriteLine(progress + "/" + fileCount
                     + " - " + fileName);
 
-                // Voxels library only works with .vox and .qb files.
-                // .vox functionality removed temporarily
-                if (file.Extension == ".qb")
+                if (file.Extension == ".qb" || file.Extension == ".vox")
                     CubExport.Export(importedData, outputFilePath);
                 progress++;
             }
