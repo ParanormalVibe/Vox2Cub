@@ -9,7 +9,7 @@ namespace Vox2Cub {
             string outputPath = Environment.CurrentDirectory +
                 "\\Vox2Cub Converted Files\\";
 
-            StageOutputDirectory(outputPath);
+            Directory.CreateDirectory(outputPath);
             ConvertDirectory(inputPath, outputPath);
 
             Console.WriteLine("Success! All converted files are in \"{0}\"\"",
@@ -61,10 +61,6 @@ namespace Vox2Cub {
                 throw new DirectoryNotFoundException();
         }
 
-        static void StageOutputDirectory(string outputDir) {
-            Directory.CreateDirectory(outputDir);
-        }
-
         static void ConvertDirectory(string inputPath, string outputPath) {
             var inputFiles = new DirectoryInfo(inputPath).GetFiles();
             int fileCount = inputFiles.Length;
@@ -79,7 +75,7 @@ namespace Vox2Cub {
                         inputFiles.Length, file.Name);
                     var outputFilePath = GetOutputFilePath(outputPath,
                         Path.GetFileNameWithoutExtension(file.FullName));
-                    ExportCubFile(outputFilePath, voxData);
+                    CubExport.Export(voxData, outputFilePath);
                 }
                 progress++;
             }
@@ -94,10 +90,6 @@ namespace Vox2Cub {
             if (importedData == null)
                 Console.WriteLine("Unable to read file {0}", filePath);
             return importedData;
-        }
-
-        public static void ExportCubFile(string outputPath, VoxelData toExport) {
-            CubExport.Export(toExport, outputPath);
         }
     }
 }
