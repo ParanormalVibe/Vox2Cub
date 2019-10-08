@@ -88,7 +88,7 @@ namespace Vox2Cub
             {
                 var importedData = VoxelImport.Import(file.FullName);
                 var fileName = Path.GetFileNameWithoutExtension(file.FullName);
-                string outputFilePath = Path.Combine(outputPath, fileName, ".cub");
+                string outputFilePath = outputPath + fileName + ".cub";
                 Console.WriteLine(progress + "/" + fileCount
                     + " - " + fileName);
 
