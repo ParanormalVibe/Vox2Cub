@@ -60,9 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CubExport.cs" />
-    <Compile Include="Vox2CubApp.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\CubExport.cs" />
+    <Compile Include="src\Vox2CubApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
