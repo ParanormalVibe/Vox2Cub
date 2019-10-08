@@ -32,5 +32,7 @@ namespace Vox2Cub {
                 writeBinary.Close();
             }
         }
+
+        
     }
 }
