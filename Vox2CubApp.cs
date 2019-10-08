@@ -22,7 +22,7 @@ namespace Vox2Cub
 
         static string GetInputDirectory()
         {
-            Console.Write("vox/cb file folder: ");
+            Console.Write("File folder with .vox/.qb files: ");
             string inputPath = Console.ReadLine();
             try
             {
