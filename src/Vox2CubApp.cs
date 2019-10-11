@@ -12,7 +12,7 @@ namespace Vox2Cub {
             Directory.CreateDirectory(outputPath);
             ConvertDirectory(inputPath, outputPath);
 
-            Console.WriteLine("Success! All converted files are in \"{0}\"\"",
+            Console.WriteLine("Success! All converted files are in \"{0}\"",
                 outputPath);
             Console.ReadLine();
         }
