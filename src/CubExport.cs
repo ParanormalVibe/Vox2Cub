@@ -8,7 +8,6 @@ namespace Vox2Cub {
             Export(new VoxelData(new XYZ(sizeX, sizeX, sizeZ),
                 colors), path);
         }
-
         public static void Export(VoxelData data, string path) {
             using (BinaryWriter writeBinary = new BinaryWriter(File.Open
                 (path, FileMode.Create))) {
@@ -25,14 +24,10 @@ namespace Vox2Cub {
                                 writeBinary.Write(voxelColor.R);
                                 writeBinary.Write(voxelColor.G);
                                 writeBinary.Write(voxelColor.B);
-                            }
-                            else
+                            } else
                                 writeBinary.Write(000);
                         }
-                writeBinary.Close();
             }
         }
-
-        
     }
 }

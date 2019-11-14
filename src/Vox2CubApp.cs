@@ -16,7 +16,6 @@ namespace Vox2Cub {
                 outputPath);
             Console.ReadLine();
         }
-
         static string GetInputDirectory() {
             Console.Write("File folder with .vox/.qb files: ");
             string inputPath = Console.ReadLine();
@@ -51,16 +50,13 @@ namespace Vox2Cub {
                     "Please nter a valid folder path.", inputPath);
                 inputPath = GetInputDirectory();
             }
-
             return inputPath;
         }
-
         static void VerifyDirectoryPath(string path) {
             Path.GetFullPath(path);
             if (!Directory.Exists(path))
                 throw new DirectoryNotFoundException();
         }
-
         static void ConvertDirectory(string inputPath, string outputPath) {
             var inputFiles = new DirectoryInfo(inputPath).GetFiles();
             int fileCount = inputFiles.Length;
@@ -80,11 +76,9 @@ namespace Vox2Cub {
                 progress++;
             }
         }
-
         static string GetOutputFilePath(string outputDirPath, string fileName) {
             return outputDirPath + fileName + ".cub";
         }
-
         public static VoxelData ImportVoxFile(string filePath) {
             var importedData = VoxelImport.Import(filePath);
             if (importedData == null)
