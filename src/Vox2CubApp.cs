@@ -80,7 +80,13 @@ namespace Vox2Cub {
             return outputDirPath + fileName + ".cub";
         }
         public static VoxelData ImportVoxFile(string filePath) {
-            var importedData = VoxelImport.Import(filePath);
+            VoxelData importedData = null;
+            try {
+                importedData = VoxelImport.Import(filePath);
+            }
+            catch (IOException) {
+                Console.WriteLine("Unable to read file {0}", filePath);
+            }
             if (importedData == null)
                 Console.WriteLine("Unable to read file {0}", filePath);
             return importedData;
