@@ -63,8 +63,8 @@ namespace Vox2Cub {
                     $"{inputFiles.Length}:\"{file.Name}\"");
                 var voxData = ImportVoxFile(file.FullName);
                 if (voxData != null) {
-                    Console.WriteLine("Exporting {0}/{1}:\"{2}\"", progress,
-                        inputFiles.Length, file.Name);
+                    Console.WriteLine($"Exporting {progress}/" +
+                        $"{inputFiles.Length}:\"{file.Name}\"");
                     var outputFilePath = GetOutputFilePath(outputPath,
                         Path.GetFileNameWithoutExtension(file.FullName));
                     CubExport.Export(voxData, outputFilePath);
