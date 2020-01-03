@@ -8,12 +8,10 @@ namespace Vox2Cub {
             string inputPath = GetInputDirectory();
             string outputPath = Environment.CurrentDirectory +
                 "\\Vox2Cub Converted Files\\";
-
             Directory.CreateDirectory(outputPath);
             ConvertDirectory(inputPath, outputPath);
-
-            Console.WriteLine("Success! All converted files are in \"{0}\"",
-                outputPath);
+            Console.WriteLine($"Finished! Any converted files are in " +
+                $"\"{outputPath}\"");
             Console.ReadLine();
         }
         static string GetInputDirectory() {
@@ -23,31 +21,31 @@ namespace Vox2Cub {
                 VerifyDirectoryPath(inputPath);
             }
             catch (ArgumentException) {
-                Console.WriteLine("The path \"{0}\" is invalid. " +
-                    "Please enter a valid folder path.", inputPath);
+                Console.WriteLine($"The path \"{inputPath}\" is invalid. " +
+                    "Please enter a valid folder path.");
                 inputPath = GetInputDirectory();
             }
             catch (System.Security.SecurityException) {
                 Console.WriteLine("Insufficient permissions to access" +
-                    "\"{0}\".{1}Select another folder or run this " +
-                    "application as administrator and try again.",
-                    inputPath, Environment.NewLine);
+                    $"\"{inputPath}\".{Environment.NewLine}" +
+                    "Select another folder or run this " +
+                    "application as administrator and try again.");
                 inputPath = GetInputDirectory();
             }
             catch (NotSupportedException) {
-                Console.WriteLine("The path \"{0}\" contains a colon ':' " +
-                    "outside of the volume identifier. Please try again.",
-                    inputPath);
+                Console.WriteLine($"The path \"{inputPath}\" " +
+                    "contains a colon ':' outside of the volume identifier. " +
+                    "Please try again.");
                 inputPath = GetInputDirectory();
             }
             catch (PathTooLongException) {
-                Console.WriteLine("The path \"{0}\" is too long. Please " +
-                    "enter a valid folder path.", inputPath);
+                Console.WriteLine($"The path \"{inputPath}\" " +
+                    "is too long. Please enter a valid folder path.");
                 inputPath = GetInputDirectory();
             }
             catch (DirectoryNotFoundException) {
-                Console.WriteLine("The path \"{0}\" could not be found. " +
-                    "Please nter a valid folder path.", inputPath);
+                Console.WriteLine($"The path \"{inputPath}\" " +
+                    "could not be found. Please enter a valid folder path.");
                 inputPath = GetInputDirectory();
             }
             return inputPath;
@@ -59,12 +57,10 @@ namespace Vox2Cub {
         }
         static void ConvertDirectory(string inputPath, string outputPath) {
             var inputFiles = new DirectoryInfo(inputPath).GetFiles();
-            int fileCount = inputFiles.Length;
-
             int progress = 1;
             foreach (var file in inputFiles) {
-                Console.WriteLine("Importing {0}/{1}:\"{2}\"", progress,
-                    inputFiles.Length, file.Name);
+                Console.WriteLine($"Importing {progress}/" +
+                    $"{inputFiles.Length}:\"{file.Name}\"");
                 var voxData = ImportVoxFile(file.FullName);
                 if (voxData != null) {
                     Console.WriteLine("Exporting {0}/{1}:\"{2}\"", progress,
@@ -76,19 +72,18 @@ namespace Vox2Cub {
                 progress++;
             }
         }
-        static string GetOutputFilePath(string outputDirPath, string fileName) {
-            return outputDirPath + fileName + ".cub";
+        static string GetOutputFilePath(string outputDir, string fileName) {
+            return outputDir + fileName + ".cub";
         }
         public static VoxelData ImportVoxFile(string filePath) {
             VoxelData importedData = null;
             try {
                 importedData = VoxelImport.Import(filePath);
-            }
-            catch (IOException) {
-                Console.WriteLine("Unable to read file {0}", filePath);
+            } catch (IOException) {
+                Console.WriteLine($"Unable to read file {filePath}");
             }
             if (importedData == null)
-                Console.WriteLine("Unable to read file {0}", filePath);
+                Console.WriteLine($"Unable to read file {filePath}");
             return importedData;
         }
     }
