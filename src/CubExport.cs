@@ -5,7 +5,7 @@ namespace Vox2Cub {
     public class CubExport {
         public static void Export(int sizeX, int sizeY, int sizeZ,
             Color[] colors, string path) {
-            Export(new VoxelData(new XYZ(sizeX, sizeX, sizeZ),
+            Export(new VoxelData(new XYZ(sizeX, sizeY, sizeZ),
                 colors), path);
         }
         public static void Export(VoxelData data, string path) {
